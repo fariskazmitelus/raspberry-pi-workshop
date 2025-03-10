@@ -46,17 +46,6 @@ if ! command -v python3 &> /dev/null; then
     check_command "Python3 installation" || exit 1
 fi
 
-# Create virtual environment
-if ! step_completed "venv_creation"; then
-    print_color "Creating Python virtual environment..."
-    python3 -m venv --system-site-packages venv
-    source venv/bin/activate
-    print_color "Virtual environment created and activated."
-    mark_step_completed "venv_creation"
-else
-    source venv/bin/activate
-fi
-
 # Update and upgrade system
 if ! step_completed "system_update"; then
     print_color "Updating and upgrading system packages..."
@@ -77,6 +66,18 @@ if ! step_completed "system_packages"; then
     if check_command "System package installation"; then
         mark_step_completed "system_packages"
     fi
+fi
+
+# Create virtual environment
+if ! step_completed "venv_creation"; then
+    print_color "Creating Python virtual environment..."
+    python3 -m venv --system-site-packages venv
+    source venv/bin/activate
+    print_color "Virtual environment created and activated."
+    pip install --upgrade pip
+    mark_step_completed "venv_creation"
+else
+    source venv/bin/activate
 fi
 
 # Clone GitHub repositories
@@ -112,7 +113,7 @@ if ! step_completed "python_packages"; then
     check_command "tflite-runtime installation"
     
     print_color "Installing opencv-python..."
-    pip install opencv-python==4.4.0.46
+    pip install opencv-python
     check_command "opencv-python installation"
     
     mark_step_completed "python_packages"
@@ -122,7 +123,7 @@ fi
 if ! step_completed "st7735_library"; then
     print_color "Installing ST7735 library..."
     cd Python_ST7735
-    python3 setup.py install
+    python setup.py install
     if check_command "ST7735 library installation"; then
         mark_step_completed "st7735_library"
     fi
@@ -145,6 +146,8 @@ print_color "   source $PROJECT_DIR/venv/bin/activate"
 print_color "2. To set up Raspberry Pi Connect, run these commands:"
 print_color "   rpi-connect on"
 print_color "   rpi-connect signin"
-print_color "3. Please run 'sudo raspi-config' and enable SPI interface"
+print_color "3. Enable SPI interface manually using raspi-config:"
+print_color "   sudo raspi-config"
+print_color "   Navigate to 'Interface Options' > 'SPI' and enable it"
 
 deactivate
