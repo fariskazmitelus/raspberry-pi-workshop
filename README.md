@@ -1,18 +1,15 @@
 # raspberry-pi-workshop
 
 ## Setup
+1. Clone this repo onto the pi
+2. Run ```dos2unix raspberry-pi.sh```
+3. Run ```chmod u+x raspberry-pi.sh```
+4. Run ```./raspberry-pi.sh```
+5. During initial updates, you may be prompted around 90% completion to make a choice. Just hit enter.
+6. follow additional prompts given at the end of the script
 
-```bash
-sudo apt update
-sudo apt full-upgrade
-sudo apt install rpi-connect
-rpi-connect on
-rpi-connect signin
-sudo apt install code
-git clone https://github.com/raspberrypi/picamera2
-cd picamera2
-cd examples/tensorflow
+## Script
+Ensure the virtual environment is active when running either python script
 
-# Look at the instructions for real_time_with_labels.py at the top of the file and then run
-python3 real_time_with_labels.py --model mobilenet_v2.tflite --label coco_labels.txt
-```
+```recognition.py``` must be moved in ```picamera2/examples/tensorflow``` to work. Use the following command to test it:
+```python3 recognition.py --model mobilenet_v2.tflite --label coco_labels.txt```
