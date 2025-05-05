@@ -19,6 +19,10 @@ Ensure the virtual environment is active when running either python script
 
 1. Download and install Win32DiskImager (doesn't work on corporate laptops)
 2. Plug existing Raspberry Pi SD Card into computer and turn it into an `.img` using Win32DiskImager
+    - Choose device
+    - Make a new file with `.img` extension and choose it
+    - Click "read"
+
 3. Download pishrink to reduce img size:
 ```
 sudo apt update && sudo apt install -y wget parted gzip pigz xz-utils udev e2fsprogs zip jq uuid-runtime
@@ -30,4 +34,19 @@ sudo mv pishrink.sh /usr/local/bin
 ```
 sudo pishrink.sh ~/MyImage.img
 ```
-5. Flash new .img to Pi
+5. Download factory-reset patch repo
+```
+git clone https://github.com/fariskazmi/raspberry-pi-factory-reset
+```
+6. Copy image to inside git repo
+7. Patch img to include factory-reset capability
+```
+chmod +x create-factory-reset
+sudo ./create-factory-reset -i <img> -a
+```
+8. Flash new .restore.img to Pi
+9. You can now, on the pi, run to factory reset:
+```
+sudo su
+/boot/factory_reset --reset
+```
