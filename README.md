@@ -1,6 +1,21 @@
-# raspberry-pi-workshop
+# Raspberry Pi Workshop (Extended to Arduino)
 
-## Setup
+This workshop teaches sensor interfacing and security system development using both Raspberry Pi and Arduino platforms. Start with either platform based on your hardware and experience level.
+
+## Platform Overview
+
+| Platform | Best For | Complexity | Hardware Cost |
+|----------|----------|------------|---------------|
+| **Raspberry Pi** | Computer vision, AI, complex projects | Higher | ~$100+ |
+| **Arduino** | Real-time control, basic sensors, learning | Lower | ~$30+ |
+
+Choose your platform:
+- **🍓 [Raspberry Pi](#raspberry-pi-setup)** - Full computer with camera, AI object detection
+- **🤖 [Arduino](#arduino-setup)** - Microcontroller with sensors and real-time response
+
+---
+
+## Raspberry Pi Setup
 1. Clone this repo onto the pi
 2. Run ```dos2unix raspberry-pi.sh```
 3. Run ```chmod u+x raspberry-pi.sh```
@@ -14,7 +29,30 @@ Ensure the virtual environment is active when running either python script
 ```recognition.py``` must be moved in ```picamera2/examples/tensorflow``` to work. Use the following command to test it:
 ```python3 recognition.py --model mobilenet_v2.tflite --label coco_labels.txt```
 
+---
 
+## Arduino Setup
+
+### Quick Start (Arduino)
+1. Download and install [Arduino IDE](https://www.arduino.cc/en/software)
+2. Clone this repository: `git clone https://github.com/fariskazmitelus/raspberry-pi-workshop`
+3. Navigate to the `arduino/` directory
+4. Open any `.ino` file in Arduino IDE
+5. Connect your Arduino and upload the code
+6. Open Serial Monitor to see the output
+
+### Arduino Projects
+- **`ultrasonic_arduino.ino`** - Distance sensor basics
+- **`pir_arduino.ino`** - Motion detection
+- **`security_system_arduino.ino`** - Combined security system (student version)
+- **`security_system_complete.ino`** - Complete implementation (reference)
+
+See [`arduino/README.md`](arduino/README.md) for detailed Arduino instructions, wiring diagrams, and troubleshooting.
+
+### 📋 Platform Comparison
+See [`PLATFORM_COMPARISON.md`](PLATFORM_COMPARISON.md) for side-by-side code examples and guidance on choosing between Raspberry Pi and Arduino.
+
+---
 ## Imaging
 
 1. Download and install Win32DiskImager (doesn't work on corporate laptops)
