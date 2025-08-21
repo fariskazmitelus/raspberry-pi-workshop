@@ -49,6 +49,9 @@ Ensure the virtual environment is active when running either python script
 
 See [`arduino/README.md`](arduino/README.md) for detailed Arduino instructions, wiring diagrams, and troubleshooting.
 
+### 📋 Platform Comparison
+See [`PLATFORM_COMPARISON.md`](PLATFORM_COMPARISON.md) for side-by-side code examples and guidance on choosing between Raspberry Pi and Arduino.
+
 ---
 ## Imaging
 
